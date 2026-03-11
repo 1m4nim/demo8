@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo8.form.ReviewRegistForm;
+import com.example.demo8.mock.RegistServiceMock;
+import com.example.demo8.service.RegistService;
+import com.example.demo8.service.RegistServiceImpl;
 
 @Controller
 public class ReviewController {
@@ -36,6 +39,10 @@ public class ReviewController {
         if (result.hasErrors()) {
             return "regist-review";
         }
+
+        //RegistService service=new RegistServiceImpl();
+        RegistService service=new RegistServiceMock();
+        String msg=service.regist();
 
         // 成功メッセージをセット
         model.addAttribute("msg", "レビュー登録が完了しました");
